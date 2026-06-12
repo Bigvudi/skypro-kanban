@@ -1,10 +1,24 @@
-function Card() {
+function Card({ card }) {
+  // Функция для определения цвета темы
+  const getThemeClass = (topic) => {
+    switch (topic) {
+      case "Web Design":
+        return "_orange";
+      case "Research":
+        return "_green";
+      case "Copywriting":
+        return "_purple";
+      default:
+        return "_orange";
+    }
+  };
+
   return (
     <div className="cards__item">
       <div className="cards__card card">
         <div className="card__group">
-          <div className="card__theme _orange">
-            <p className="_orange">Web Design</p>
+          <div className={`card__theme ${getThemeClass(card.topic)}`}>
+            <p className={getThemeClass(card.topic)}>{card.topic}</p>
           </div>
           <a href="#popBrowse" target="_self">
             <div className="card__btn">
@@ -16,7 +30,7 @@ function Card() {
         </div>
         <div className="card__content">
           <a href="" target="_blank">
-            <h3 className="card__title">Название задачи</h3>
+            <h3 className="card__title">{card.title}</h3>
           </a>
           <div className="card__date">
             <svg
@@ -47,7 +61,7 @@ function Card() {
                 </clipPath>
               </defs>
             </svg>
-            <p>30.10.23</p>
+            <p>{card.date}</p>
           </div>
         </div>
       </div>
