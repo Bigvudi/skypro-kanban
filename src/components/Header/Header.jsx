@@ -1,6 +1,16 @@
+import { useState } from "react";
 import PopUser from "../PopUser/PopUser";
 
 function Header() {
+  // 2. Создали состояние видимости окна
+  const [isOpen, setIsOpen] = useState(false);
+
+  // 3. Создали функцию переключения
+  const toggleMenu = (e) => {
+    e.preventDefault(); // Отменяем переход по ссылке #user-set-target
+    setIsOpen(!isOpen);
+  };
+
   return (
     <header className="header">
       <div className="container">
@@ -19,10 +29,18 @@ function Header() {
             <button className="header__btn-main-new _hover01" id="btnMainNew">
               <a href="#popNewCard">Создать новую задачу</a>
             </button>
-            <a href="#user-set-target" className="header__user _hover02">
+
+            {/* 4. Добавили onClick={toggleMenu} на имя пользователя */}
+            <a
+              href="#user-set-target"
+              className="header__user _hover02"
+              onClick={toggleMenu}
+            >
               Ivan Ivanov
             </a>
-            <PopUser />
+
+            {/* 5. Передаем состояние isOpen внутрь компонента окна */}
+            <PopUser isOpen={isOpen} />
           </nav>
         </div>
       </div>
