@@ -1,3 +1,4 @@
+import { SButton } from "../Button.styled";
 // 1. Принимаем переменую isOpen в круглых скобках функции через фигурные скобки
 function PopUser({ isOpen }) {
   return (
@@ -13,9 +14,20 @@ function PopUser({ isOpen }) {
         <p>Темная тема</p>
         <input type="checkbox" className="checkbox" name="checkbox" />
       </div>
-      <button type="button" className="_hover03">
+      <SButton
+        type="button"
+        $width="72px"
+        $height="30px"
+        $bg="transparent"
+        $color="#565eef"
+        $radius="4px"
+        $border="1px solid #565eef"
+        $linkColor="#565eef"
+        $hoverBg="#33399b" // Фон при наведении (эффект _hover03)
+        $mr="0"
+      >
         <a href="#popExit">Выйти</a>
-      </button>
+      </SButton>
     </div>
   );
 }
