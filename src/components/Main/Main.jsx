@@ -1,18 +1,23 @@
-import { useState, useEffect } from "react"; // 1. Импортируем хуки
+import { useState, useEffect } from "react";
 import Column from "../Column/Column";
 import { cardList } from "../../data.js";
+import {
+  StyledMain,
+  Container,
+  MainBlock,
+  MainContent,
+  MainLoader,
+} from "../Main.styled";
 
 function Main() {
-  // 2. Создаем состояние загрузки. Изначально true — загрузка идет
   const [isLoading, setIsLoading] = useState(true);
 
-  // 3. Эффект имитации загрузки данных
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIsLoading(false); // Через 2 секунды выключаем загрузку
+      setIsLoading(false);
     }, 2000);
 
-    return () => clearTimeout(timer); // Очищаем таймер при размонтировании
+    return () => clearTimeout(timer);
   }, []);
 
   const noStatusCards = cardList.filter(
@@ -28,38 +33,23 @@ function Main() {
   const doneCards = cardList.filter((card) => card.status === "Готово");
 
   return (
-    <main className="main">
-      <div className="container">
-        <div className="main__block">
-          {/* 4. Используем тернарный оператор */}
+    <StyledMain>
+      <Container>
+        <MainBlock>
           {isLoading ? (
-            // Если isLoading === true, показываем этот блок по центру
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                minHeight: "50vh",
-                fontSize: "24px",
-                fontWeight: "bold",
-                color: "#565EEF", // Красивый синий цвет (можете поменять на свой)
-              }}
-            >
-              Данные загружаются...
-            </div>
+            <MainLoader>Данные загружаются...</MainLoader>
           ) : (
-            // Если isLoading === false, показываем ваши колонки
-            <div className="main__content">
+            <MainContent>
               <Column title="Без статуса" cards={noStatusCards} />
               <Column title="Нужно сделать" cards={todoStatusCards} />
               <Column title="В работе" cards={inProgressCards} />
               <Column title="Тестирование" cards={testingCards} />
               <Column title="Готово" cards={doneCards} />
-            </div>
+            </MainContent>
           )}
-        </div>
-      </div>
-    </main>
+        </MainBlock>
+      </Container>
+    </StyledMain>
   );
 }
 

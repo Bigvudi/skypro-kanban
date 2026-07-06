@@ -1,38 +1,36 @@
+import {
+  CardsItem,
+  CardContainer,
+  CardGroup,
+  CardTheme,
+  CardBtn,
+  CardContent,
+  CardTitle,
+  CardDate,
+} from "../Card.styled";
 function Card({ card }) {
-  // Функция для определения цвета темы
-  const getThemeClass = (topic) => {
-    switch (topic) {
-      case "Web Design":
-        return "_orange";
-      case "Research":
-        return "_green";
-      case "Copywriting":
-        return "_purple";
-      default:
-        return "_orange";
-    }
-  };
-
   return (
-    <div className="cards__item">
-      <div className="cards__card card">
-        <div className="card__group">
-          <div className={`card__theme ${getThemeClass(card.topic)}`}>
-            <p className={getThemeClass(card.topic)}>{card.topic}</p>
-          </div>
+    <CardsItem>
+      <CardContainer>
+        <CardGroup>
+          {/* Передаем топик в пропс $topic, чтобы применить нужные цвета */}
+          <CardTheme $topic={card.topic}>
+            <p>{card.topic}</p>
+          </CardTheme>
           <a href="#popBrowse" target="_self">
-            <div className="card__btn">
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
+            <CardBtn>
+              <div />
+              <div />
+              <div />
+            </CardBtn>
           </a>
-        </div>
-        <div className="card__content">
-          <a href="" target="_blank">
-            <h3 className="card__title">{card.title}</h3>
+        </CardGroup>
+
+        <CardContent>
+          <a href="" target="_blank" rel="noreferrer">
+            <CardTitle>{card.title}</CardTitle>
           </a>
-          <div className="card__date">
+          <CardDate>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="13"
@@ -62,10 +60,10 @@ function Card({ card }) {
               </defs>
             </svg>
             <p>{card.date}</p>
-          </div>
-        </div>
-      </div>
-    </div>
+          </CardDate>
+        </CardContent>
+      </CardContainer>
+    </CardsItem>
   );
 }
 
