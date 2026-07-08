@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const PopUserSet = styled.div`
+export const PopUserWrapper = styled.div`
   display: ${({ $isOpen }) => ($isOpen ? "block" : "none")};
   position: absolute;
   top: ${({ $top }) => $top || "61px"};
@@ -46,34 +46,34 @@ export const PopUserTheme = styled.div`
     line-height: ${({ $lineHeight }) => $lineHeight || "21px"};
     letter-spacing: ${({ $letterSpacing }) => $letterSpacing || "-0.14px"};
   }
+`;
 
-  input[type="checkbox"] {
-    position: relative;
-    width: 24px;
-    height: 13px;
-    border-radius: 100px;
-    background: ${({ $trackBg }) => $trackBg || "#eaeef6"};
-    outline: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+export const PopUserCheckbox = styled.input.attrs({ type: "checkbox" })`
+  position: relative;
+  width: 24px;
+  height: 13px;
+  border-radius: 100px;
+  background: ${({ $trackBg }) => $trackBg || "#eaeef6"};
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  transition: 0.5s;
+  cursor: pointer;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background-color: ${({ $thumbBg }) => $thumbBg || "#94a6be"};
     transition: 0.5s;
-    cursor: pointer;
+  }
 
-    &::before {
-      content: "";
-      position: absolute;
-      top: 1px;
-      left: 1px;
-      width: 11px;
-      height: 11px;
-      border-radius: 50%;
-      background-color: ${({ $thumbBg }) => $thumbBg || "#94a6be"};
-      transition: 0.5s;
-    }
-
-    &:checked::before {
-      left: 12px;
-    }
+  &:checked::before {
+    left: 12px;
   }
 `;
