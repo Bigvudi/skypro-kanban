@@ -1,50 +1,82 @@
 import { useState } from "react";
 import PopUser from "../PopUser/PopUser";
+import { SButton } from "./Button.styled";
+import { SLogo, DarkLogo } from "./Logo.styled";
+import {
+  StyledHeader,
+  Container,
+  HeaderBlock,
+  HeaderNav,
+  HeaderUser,
+} from "./Header.styled";
 
-function Header() {
-  // 2. Создали состояние видимости окна
+function Header({
+  user = "Ivan Ivanov",
+  showNewCardBtn = true,
+  children,
+  ...props
+}) {
   const [isOpen, setIsOpen] = useState(false);
+  const isDark = false;
 
-  // 3. Создали функцию переключения
   const toggleMenu = (e) => {
-    e.preventDefault(); // Отменяем переход по ссылке #user-set-target
+    e.preventDefault();
     setIsOpen(!isOpen);
   };
 
   return (
-    <header className="header">
-      <div className="container">
-        <div className="header__block">
-          <div className="header__logo _show _light">
+    <StyledHeader {...props}>
+      <Container>
+        <HeaderBlock>
+          {/* Блок с логотипами */}
+          <SLogo $dark={isDark} className="_show _light">
             <a href="" target="_self">
               <img src="images/logo.png" alt="logo" />
             </a>
-          </div>
-          <div className="header__logo _dark">
+          </SLogo>
+          <DarkLogo $dark={isDark} className="_dark">
             <a href="" target="_self">
               <img src="images/logo_dark.png" alt="logo" />
             </a>
-          </div>
-          <nav className="header__nav">
-            <button className="header__btn-main-new _hover01" id="btnMainNew">
-              <a href="#popNewCard">Создать новую задачу</a>
-            </button>
+          </DarkLogo>
 
-            {/* 4. Добавили onClick={toggleMenu} на имя пользователя */}
-            <a
-              href="#user-set-target"
-              className="header__user _hover02"
-              onClick={toggleMenu}
-            >
-              Ivan Ivanov
-            </a>
+          {/* Блок навигации */}
+          <HeaderNav>
+            {children}
+            {showNewCardBtn && (
+              <SButton
+                $width="178px"
+                $height="30px"
+                $bg="#565eef"
+                $color="#ffffff"
+                $hoverBg="#33399b"
+                $radius="4px"
+                $size="14px"
+                $mr="0"
+                $mobilePos="fixed"
+                $mobileLeft="16px"
+                $mobileBottom="30px"
+                $mobileWidth="calc(100vw - 32px)"
+                $mobileHeight="40px"
+                $zIndex="3"
+              >
+                <a href="#popNewCard" target="_self">
+                  Создать новую задачу
+                </a>
+              </SButton>
+            )}
 
-            {/* 5. Передаем состояние isOpen внутрь компонента окна */}
+            {/* Имя пользователя с переключением меню */}
+            <HeaderUser href="#user-set-target" onClick={toggleMenu}>
+              {user}
+            </HeaderUser>
+
+            {/* Компонент попапа пользователя */}
             <PopUser isOpen={isOpen} />
-          </nav>
-        </div>
-      </div>
-    </header>
+          </HeaderNav>
+        </HeaderBlock>
+      </Container>
+    </StyledHeader>
   );
 }
 
