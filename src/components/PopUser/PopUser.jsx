@@ -1,11 +1,11 @@
-import { SButton } from "../Button.styled";
+import { SButton } from "../Header/Button.styled";
 import {
   PopUserWrapper,
   PopUserName,
   PopUserMail,
   PopUserTheme,
   PopUserCheckbox,
-} from "../PopUser.styled";
+} from "./PopUser.styled";
 
 function PopUser({
   isOpen,

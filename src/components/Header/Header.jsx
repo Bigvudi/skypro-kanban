@@ -1,14 +1,14 @@
 import { useState } from "react";
 import PopUser from "../PopUser/PopUser";
-import { SButton } from "../Button.styled";
-import { SLogo, DarkLogo } from "../Logo.styled";
+import { SButton } from "./Button.styled";
+import { SLogo, DarkLogo } from "./Logo.styled";
 import {
   StyledHeader,
   Container,
   HeaderBlock,
   HeaderNav,
   HeaderUser,
-} from "../Header.styled";
+} from "./Header.styled";
 
 function Header({
   user = "Ivan Ivanov",

@@ -7,7 +7,7 @@ import {
   CardContent,
   CardTitle,
   CardDate,
-} from "../Card.styled";
+} from "./Card.styled";
 function Card({ card }) {
   return (
     <CardsItem>

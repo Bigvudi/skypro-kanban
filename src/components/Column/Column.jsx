@@ -1,5 +1,5 @@
 import Card from "../Card/Card";
-import { ColumnWrapper, ColumnTitle, CardsContainer } from "../Column.styled";
+import { ColumnWrapper, ColumnTitle, CardsContainer } from "./Column.styled";
 
 function Column({
   title,
